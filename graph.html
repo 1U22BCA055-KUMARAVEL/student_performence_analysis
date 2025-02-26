@@ -1,0 +1,101 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Performance Analysis</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      padding: 20px;
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    #chart-container {
+      width: 80%;
+      margin: 0 auto;
+    }
+    #level-display {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 1.2em;
+      background-color: #fff;
+      padding: 10px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <h2>Student Performance Analysis Graph</h2>
+  <div id="chart-container">
+    <canvas id="performanceChart"></canvas>
+  </div>
+  <div id="level-display"></div>
+
+  <script>
+    // Sample Data - This will be fetched dynamically in production
+    const studentNames = ['John Doe', 'Jane Smith', 'Alice Johnson', 'Bob Brown'];
+    const studentScores = [85, 72, 95, 45];
+    const studentAttendance = [90, 80, 98, 60];
+
+    // Function to determine performance level
+    function getPerformanceLevel(score) {
+      if (score >= 90) return 'Excellent';
+      else if (score >= 75) return 'Good';
+      else if (score >= 50) return 'Average';
+      else return 'Needs Improvement';
+    }
+
+    // Display performance levels
+    let levelDisplayHTML = '';
+    studentScores.forEach((score, index) => {
+      levelDisplayHTML += `<p>${studentNames[index]}: ${getPerformanceLevel(score)}</p>`;
+    });
+    $('#level-display').html(levelDisplayHTML);
+
+    // Render Chart.js graph
+    const ctx = document.getElementById('performanceChart').getContext('2d');
+    const performanceChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: studentNames,
+        datasets: [
+          {
+            label: 'Score',
+            data: studentScores,
+            backgroundColor: studentScores.map(score => {
+              if (score >= 90) return '#4CAF50'; // Excellent
+              else if (score >= 75) return '#2196F3'; // Good
+              else if (score >= 50) return '#FFC107'; // Average
+              else return '#F44336'; // Needs Improvement
+            }),
+            borderWidth: 1
+          },
+          {
+            label: 'Attendance (%)',
+            data: studentAttendance,
+            backgroundColor: '#9C27B0',
+            borderWidth: 1
+          }
+        ]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

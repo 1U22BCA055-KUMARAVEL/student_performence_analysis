@@ -7,6 +7,50 @@
   <title>Student Performance Analysis</title>
   <link rel="stylesheet" href="styles.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    form {
+      background-color: #fff;
+      padding: 20px;
+      margin: 20px auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #analysis-result, #feedback-result {
+      background-color: #fff;
+      padding: 20px;
+      margin: 20px auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+    }
+  </style>
 </head>
 <body>
   <!-- User Management Module -->
@@ -48,6 +92,52 @@
     <div id="feedback-result"></div>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    // Data Collection Module - Submit Data
+    $('#student-data-form').on('submit', function(e) {
+      e.preventDefault();
+      const name = $('input[name="student_name"]').val();
+      const score = parseInt($('input[name="score"]').val());
+      const attendance = parseInt($('input[name="attendance"]').val());
+     
+      // Performance Analysis
+      let analysis = '';
+      if (score >= 90) {
+        analysis = 'Excellent';
+      } else if (score >= 75) {
+        analysis = 'Good';
+      } else if (score >= 50) {
+        analysis = 'Average';
+      } else {
+        analysis = 'Needs Improvement';
+      }
+     
+      // Display Analysis
+      $('#analysis-result').html(`Student: ${name}<br>Score: ${score}<br>Attendance: ${attendance}%<br>Performance: ${analysis}`);
+
+      // Feedback and Recommendations
+      let feedback = '';
+      if (analysis === 'Needs Improvement') {
+        feedback = 'Focus on weak areas and seek extra help.';
+      } else if (analysis === 'Average') {
+        feedback = 'Keep practicing regularly.';
+      } else if (analysis === 'Good') {
+        feedback = 'Great job! Aim for excellence.';
+      } else {
+        feedback = 'Outstanding performance! Keep it up!';
+      }
+      $('#feedback-result').html(`Feedback: ${feedback}`);
+    });
+
+    // Report Generation - Download as text file
+    $('#generate-report').on('click', function() {
+      const reportContent = $('#analysis-result').html() + '\n' + $('#feedback-result').html();
+      const blob = new Blob([reportContent], { type: 'text/plain' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'Student_Performance_Report.txt';
+      link.click();
+    });
+  </script>
 </body>
 </html>
