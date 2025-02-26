@@ -1,0 +1,53 @@
+<!-- Basic HTML Template for Student Performance Analysis System -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Performance Analysis</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <!-- User Management Module -->
+  <div id="login-section">
+    <h2>Login</h2>
+    <form action="login.php" method="POST">
+      <input type="text" name="username" placeholder="Username" required>
+      <input type="password" name="password" placeholder="Password" required>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+
+  <!-- Data Collection Module -->
+  <div id="data-collection-section">
+    <h2>Enter Student Data</h2>
+    <form id="student-data-form">
+      <input type="text" name="student_name" placeholder="Student Name" required>
+      <input type="number" name="score" placeholder="Score" required>
+      <input type="number" name="attendance" placeholder="Attendance (%)" required>
+      <button type="submit">Submit Data</button>
+    </form>
+  </div>
+
+  <!-- Performance Analysis Module -->
+  <div id="performance-analysis-section">
+    <h2>Performance Analysis</h2>
+    <div id="analysis-result"></div>
+  </div>
+
+  <!-- Report Generation Module -->
+  <div id="report-generation-section">
+    <h2>Generate Report</h2>
+    <button id="generate-report">Download Report</button>
+  </div>
+
+  <!-- Feedback and Recommendation Module -->
+  <div id="feedback-section">
+    <h2>Feedback & Recommendations</h2>
+    <div id="feedback-result"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
