@@ -6,37 +6,118 @@
   <title>Student Analysis</title>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* General Styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    /* Sidebar Navigation */
+    .sidebar {
+      width: 250px;
+      height: 100vh;
+      background-color: #333;
+      padding-top: 20px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      color: white;
+    }
+    .sidebar a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      padding: 15px;
+      font-size: 18px;
+    }
+    .sidebar a:hover {
+      background-color: #575757;
+    }
+
+    /* Main Content */
+    .main-content {
+      margin-left: 260px;
+      padding: 20px;
+      width: 100%;
+    }
+
+    /* Form and Sections */
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    form, #analysis-result, #feedback-result, #report-generation-section {
+      background-color: #fff;
+      padding: 20px;
+      margin: 20px auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
+      text-align: center;
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
 </head>
 <body>
-  <h2>Student Analysis</h2>
 
-  <!-- Data Collection Module -->
-  <div id="data-collection-section">
-    <h2>Enter Student Data</h2>
-    <form id="student-data-form">
-      <input type="text" name="student_name" placeholder="Student Name" required>
-      <input type="number" name="score" placeholder="Score" required>
-      <input type="number" name="attendance" placeholder="Attendance (%)" required>
-      <button type="submit">Submit Data</button>
-    </form>
+  <!-- Sidebar Navigation -->
+  <div class="sidebar">
+    <h2 style="text-align: center;">Menu</h2>
+    <a href="home.html">🏠 Home</a>
+    <a href="graph.html">📊 Graph Analysis</a>
+    <a href="index.html">🚪 Logout</a>
   </div>
 
-  <!-- Performance Analysis Module -->
-  <div id="performance-analysis-section">
-    <h2>Performance Analysis</h2>
-    <div id="analysis-result"></div>
-  </div>
+  <!-- Main Content -->
+  <div class="main-content">
+    <h2>Student Analysis</h2>
 
-  <!-- Report Generation Module -->
-  <div id="report-generation-section">
-    <h2>Generate Report</h2>
-    <button id="generate-report">Download Report</button>
-  </div>
+    <!-- Data Collection Module -->
+    <div id="data-collection-section">
+      <h2>Enter Student Data</h2>
+      <form id="student-data-form">
+        <input type="text" name="student_name" placeholder="Student Name" required>
+        <input type="number" name="score" placeholder="Score" required>
+        <input type="number" name="attendance" placeholder="Attendance (%)" required>
+        <button type="submit">Submit Data</button>
+      </form>
+    </div>
 
-  <!-- Feedback and Recommendation Module -->
-  <div id="feedback-section">
-    <h2>Feedback & Recommendations</h2>
-    <div id="feedback-result"></div>
+    <!-- Performance Analysis Module -->
+    <div id="performance-analysis-section">
+      <h2>Performance Analysis</h2>
+      <div id="analysis-result"></div>
+    </div>
+
+    <!-- Report Generation Module -->
+    <div id="report-generation-section">
+      <h2>Generate Report</h2>
+      <button id="generate-report">Download Report</button>
+    </div>
+
+    <!-- Feedback and Recommendation Module -->
+    <div id="feedback-section">
+      <h2>Feedback & Recommendations</h2>
+      <div id="feedback-result"></div>
+    </div>
   </div>
 
   <script>
@@ -83,5 +164,6 @@
       link.click();
     });
   </script>
+
 </body>
 </html>
