@@ -8,6 +8,7 @@
   <title>Student Performance Analysis</title>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="style.css">
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -18,6 +19,35 @@
       text-align: center;
       color: #333;
     }
+    .menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 250px;
+      height: 100%;
+      background: #333;
+      color: white;
+      padding-top: 20px;
+      transform: translateX(-100%);
+      transition: 0.3s ease;
+    }
+    .menu a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+    }
+    .menu a:hover {
+      background: #444;
+    }
+    .menu-toggle {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      cursor: pointer;
+      font-size: 24px;
+    }
+   
     #chart-container {
       width: 80%;
       margin: 0 auto;
@@ -34,6 +64,12 @@
   </style>
 </head>
 <body>
+  <div class="menu-toggle">&#9776;</div>
+  <div class="menu">
+    <a href="home.html">Home</a>
+    <a href="student_analysis.html">Student Analysis</a>
+    <a href="index.html">Logout</a>
+  </div>
   <h2>Student Performance Analysis Graph</h2>
   <div id="chart-container">
     <canvas id="performanceChart"></canvas>
@@ -41,6 +77,16 @@
   <div id="level-display"></div>
 
   <script>
+    
+    $(".menu-toggle").click(function() {
+      $(".menu").css("transform", "translateX(0)");
+    });
+    $(document).click(function(event) {
+      if (!$(event.target).closest(".menu, .menu-toggle").length) {
+        $(".menu").css("transform", "translateX(-100%)");
+      }
+    });
+
     // Sample Data - This will be fetched dynamically in production
     const studentNames = ['John Doe', 'Jane Smith', 'Alice Johnson', 'Bob Brown'];
     const studentScores = [85, 72, 95, 45];
@@ -96,6 +142,7 @@
         }
       }
     });
+  
   </script>
 </body>
 </html>

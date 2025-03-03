@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Student Analysis</title>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="style.css">
   <style>
     /* General Styles */
     body {
@@ -15,31 +15,38 @@
       display: flex;
     }
 
-    /* Sidebar Navigation */
-    .sidebar {
-      width: 250px;
-      height: 100vh;
-      background-color: #333;
-      padding-top: 20px;
+    .menu {
       position: fixed;
       top: 0;
       left: 0;
+      width: 250px;
+      height: 100%;
+      background: #333;
       color: white;
+      padding-top: 20px;
+      transform: translateX(-100%);
+      transition: 0.3s ease;
     }
-    .sidebar a {
+    .menu a {
       display: block;
       color: white;
       text-decoration: none;
-      padding: 15px;
-      font-size: 18px;
+      padding: 10px 20px;
     }
-    .sidebar a:hover {
-      background-color: #575757;
+    .menu a:hover {
+      background: #444;
     }
-
+    .menu-toggle {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      cursor: pointer;
+      font-size: 24px;
+    }
+   
     /* Main Content */
     .main-content {
-      margin-left: 260px;
+      margin-left: 75px;
       padding: 20px;
       width: 100%;
     }
@@ -78,12 +85,11 @@
 </head>
 <body>
 
-  <!-- Sidebar Navigation -->
-  <div class="sidebar">
-    <h2 style="text-align: center;">Menu</h2>
-    <a href="home.html">🏠 Home</a>
-    <a href="graph.html">📊 Graph Analysis</a>
-    <a href="index.html">🚪 Logout</a>
+  <div class="menu-toggle">&#9776;</div>
+  <div class="menu">
+    <a href="home.html">Home</a>
+    <a href="graph.html">Graph Analysis</a>
+    <a href="index.html">Logout</a>
   </div>
 
   <!-- Main Content -->
@@ -121,6 +127,16 @@
   </div>
 
   <script>
+   
+    $(".menu-toggle").click(function() {
+      $(".menu").css("transform", "translateX(0)");
+    });
+    $(document).click(function(event) {
+      if (!$(event.target).closest(".menu, .menu-toggle").length) {
+        $(".menu").css("transform", "translateX(-100%)");
+      }
+    });
+
     // Data Collection Module - Submit Data
     $('#student-data-form').on('submit', function(e) {
       e.preventDefault();

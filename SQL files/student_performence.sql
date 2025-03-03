@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS users (
   password VARCHAR(255) NOT NULL,
   role VARCHAR(20) DEFAULT 'student'
 );
-
+select * from users;
 -- Data Collection Module: Student Data Table
 CREATE TABLE IF NOT EXISTS student_data (
   id INT AUTO_INCREMENT PRIMARY KEY,
@@ -36,3 +36,5 @@ INSERT INTO student_data (name, score, attendance) VALUES
 ('Alice Johnson', 95, 98),
 ('Bob Brown', 45, 60);
 
+select * from users;
+delete from users where id=1;

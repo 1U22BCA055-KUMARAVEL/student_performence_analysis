@@ -4,13 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home - Student Performance Analysis</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="style.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
+      background-color: #f4f4f4;
     }
     .menu {
       position: fixed;
@@ -44,6 +45,21 @@
       margin-left: 30px;
       padding: 20px;
     }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      color: #333;
+    }
+    .highlight {
+      color: #007BFF;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
@@ -56,8 +72,19 @@
   </div>
 
   <div class="content">
-    <h2>Welcome to Student Performance Analysis</h2>
-    <p>This system helps in analyzing student performance based on test scores and attendance.</p>
+    <div class="container">
+      <h2>Welcome to <span class="highlight">Student Performance Analysis</span></h2>
+      <p>Our system is designed to help students, teachers, and administrators gain valuable insights into academic performance. By analyzing test scores, attendance records, and participation trends, we provide a comprehensive overview to improve student outcomes.</p>
+      
+      <h3>Key Features:</h3>
+      <ul>
+        <li><strong>Graphical Analysis:</strong> Visualize trends in student performance using charts and graphs.</li>
+        <li><strong>Student Insights:</strong> Identify strengths and areas that need improvement.</li>
+           </ul>
+      
+      <h3>Why Use Student Performance Analysis?</h3>
+      <p>By leveraging data-driven insights, educators can make informed decisions to enhance learning experiences. Students can also track their progress and work towards their academic goals more effectively.</p>
+    </div>
   </div>
 
   <script>
